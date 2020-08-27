@@ -1,0 +1,172 @@
+
+ローカルにリポジトリを作成し、リモートにプッシュする
+
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
+$ git remote add origin https://github.com/XXXX/XXXXXX.git
+$ git push -u origin master
+
+
+
+
+
+(2)
+
+リモートからクローンする
+
+$ git clone https://github.com/XXXX/XXXXXX.git
+
+
+
+(3)ファイルの変更や追加をコミット
+
+$ git commit -m "コミットメッセージ"
+
+(4)
+
+ローカルの変更を確認する
+
+$ git status
+(5)
+
+commitの変更履歴をみる
+
+$ git log
+
+(6)
+リモートにプッシュ
+
+$ git push origin <ブランチ名>
+(7)
+addの取り消し
+
+$ git reset HEAD <ファイル名>
+
+
+(8)
+ローカルでブランチを作成
+
+$ git branch <ブランチ名>
+
+
+(9)
+ローカルでブランチを切り替え
+
+$ git checkout <ブランチ名>
+
+
+(10)
+ブランチの削除
+
+$ git branch -d <ブランチ名>
+
+
+(11)
+ブランチを比較する
+
+$ git diff <ブランチ名> <ブランチ名>
+(12)
+
+
+ブランチをマージする
+
+$ git merge <ブランチ名>
+
+
+
+
+git init
+
+
+(ファイルと作る）
+(py37) c:\work\wikiextractor\test2>copy nul sample1.txt                                                                           
+
+
+(2)gitをコミットする
+(py37) c:\work\wikiextractor\test2>git commit -m 'test'
+[master (root-commit) c0a8913] 'test'
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 sample1.txt
+
+
+(2)ブランチを確かめる
+(py37) c:\work\wikiextractor\test2>git branch
+* master
+(3)ブランチに入る
+
+(py37) c:\work\wikiextractor\test2>git checkout -b Python
+Switched to a new branch 'Python'
+
+
+(4)ブランチを確かめる
+(py37) c:\work\wikiextractor\test2>git branch
+* Python
+  master
+
+(5)sample1.txtに文字列'test'を付け加える
+(py37) c:\work\wikiextractor\test2>echo 'test' > sample1.txt
+
+(6)中身を確かめる
+(py37) c:\work\wikiextractor\test2>type sample1.txt
+'test'
+
+(7)コミットする
+(py37) c:\work\wikiextractor\test2>git commit -m 'Update'
+On branch Python
+Changes not staged for commit:
+        modified:   sample1.txt
+
+Untracked files:
+        foo.txt
+        sample1
+        sample2.txt
+
+no changes added to commit
+(8)sample1.txtを付け加える
+(py37) c:\work\wikiextractor\test2>git add sample1.txt
+
+(9)コミットする
+(py37) c:\work\wikiextractor\test2>git commit -m 'Update'
+[Python 2af6f0d] 'Update'
+ 1 file changed, 1 insertion(+)
+
+(10)branchをmasterに変更
+(py37) c:\work\wikiextractor\test2>git checkout master
+Switched to branch 'master'
+(11)sample1.txtの中身を確かめる
+(py37) c:\work\wikiextractor\test2>type sample1.txt
+
+
+(py37) c:\work\wikiextractor\test2>type sample1.txt
+'test'
+
+(py37) c:\work\wikiextractor\test2>
+
+
+############################################################################
+
+
+(base) C:\Users\User\iCloudDrive\test\test> git config --global user.name "githubtarohario"
+
+
+(base) C:\Users\User\iCloudDrive\test\test> git config --global user.email "tonkoarimoto@gmail.com"
+
+(base) C:\Users\User\iCloudDrive\test\test>git commit -m "add"
+[master 96ace06] add
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.csv
+
+
+(base) C:\Users\User\iCloudDrive\test\test>git push origin master
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 318 bytes | 318.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/githubtarohario/test.git
+   7c61943..96ace06  master -> master
+
+
+
