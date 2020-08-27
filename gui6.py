@@ -3,15 +3,37 @@
 #gui4.py
 #--------------------------
 import  tkinter as tk
+import sqlite3
+
 def wiget_destroy():
     root.destroy()
+def nisyo(uid,pwd):
+    flg=0
+    dbname='TestDB.db'
+    conn=sqlite3.connect(dbname)
+    c = conn.cursor()
+    select_sql = "select * from user where uid='"+uid+"' and pwd='"+pwd+"'"
+    print(select_sql)
+    c.execute(select_sql)
+    data=c.fetchall()
+    if len(data)==0:
+       conn.close()
+       return(0)
+    conn.close()
+    return(1)  
+
+
 #-----------------
 #認証画面
 #-----------------
 def first_gui():
     def btn_click():
-        root.destroy()
-        second_gui()
+        uid=txt.get()
+        pwd=txt2.get()
+        print(uid,pwd)
+        if(nisyo(uid,pwd)):
+            root.destroy()
+            second_gui()
     root = tk.Tk()
     root.title("フォーム遷移")
     # 画面サイズ

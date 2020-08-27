@@ -1,6 +1,3 @@
-#---------------------------
-#combox付け加える
-#---------------------------
 from tkinter import ttk #combox
 import tkinter as tk
 from tkinter import *   #必要
@@ -22,45 +19,50 @@ def insertdb(uid,pwd):
     #テキストボックスクリア
     txtuid.delete(0,tk.END)
     txtpwd.delete(0,tk.END)
+#------------
+#kensaku
+#引数　uid
+#---------------    
 def kensaku(uid):
     dbname='TestDB.db'
     conn=sqlite3.connect(dbname)
     select_sql = "select uid,pwd from user where uid='"+uid+"'"
     print(select_sql)
+    flg=0
     c = conn.cursor()
     for row in c.execute(select_sql):
-        print(row[0],row[1])
+        print(row[0],"-----",row[1])
         print("OK")
         uid=row[0]
         pwd=row[1]
-        #txtuid.insert(tk.END,uid)
         txtpwd.insert(tk.END,pwd)
+        flg=1
     conn.close()
+    if flg==0:
+       print("データない")
 
 
 
 
-def cb_selected(event):
-    print('v1 = %s' % v1.get())
 #-----------------------
 # ボタンのイベント
 # ------------------------ 
+#検索ボタン
 def btn_click():
-    #テキストボックスに文字列abcを挿入
-    #messagebox.showinfo("メッセージ", "ボタンがクリックされました")
-    #txt.insert(tk.END,"認証")
     uid=txtuid.get()
-    pwd=txtpwd.get()
-    print(uid,pwd)
-    #insertdb(uid,pwd)
+    print(uid)
     kensaku(uid)
-    
+#追加ボタン
+   
 def btn_click2():
     uid=txtuid.get()
     pwd=txtpwd.get()
     print(uid,pwd)
     insertdb(uid,pwd)
-    
+#クリアボタン
+def btn_click3():
+    txtuid.delete(0,tk.END)
+    txtpwd.delete(0,tk.END)    
     
     
 # Tkクラス生成
@@ -82,11 +84,13 @@ lbl.place(x=30, y=100)
 txtpwd = tk.Entry(width=20)
 txtpwd.place(x=90, y=100)
 #ボタン
-btn = tk.Button(root, text='検索', command=btn_click)
-btn.place(x=90, y=160) #表示位置
-btn = tk.Button(root, text='追加', command=btn_click2)
-btn.place(x=130, y=160) #表示位置
+btn1 = tk.Button(root, text='検索', command=btn_click)
+btn1.place(x=90, y=160) #表示位置
+btn2 = tk.Button(root, text='追加', command=btn_click2)
+btn2.place(x=130, y=160) #表示位置
 
+btn3 = tk.Button(root, text='クリア', command=btn_click3)
+btn3.place(x=170, y=160) #表示位置
 
 
 
